@@ -1,0 +1,9 @@
+{
+    "id" : "Xmas",
+    "version" : "0.1.0-SNAPSHOT",
+    "author" : "The Terasology Foundation",
+    "displayName" : "Xmas",
+    "description" : "Merry, Gooey Christmas! A wintry, holiday-themed module for the festive season.",
+    "dependencies" : [],
+    "serverSideOnly" : false
+}
