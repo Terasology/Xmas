@@ -45,7 +45,14 @@ public class SurpriseStartingInventory extends BaseComponentSystem {
         presents = Lists.newArrayList(
                 "CoreAssets:pickaxeImproved",
                 "CoreAssets:axeImproved",
-                "CoreAssets:shovelImproved");
+                "CoreAssets:shovelImproved",
+                "CoreAdvancedAssets:Door",
+                "CoreAdvancedAssets:Trunk",
+                "Fences:Fence",
+                "CoreAssets:Glass",
+                "CoreAssets:Brick:engine:stair",
+                "CoreAssets:Cobblestone",
+                "CoreAssets:Plank");
     }
 
     @Override
