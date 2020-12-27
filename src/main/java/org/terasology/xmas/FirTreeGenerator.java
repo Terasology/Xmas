@@ -73,9 +73,7 @@ public class FirTreeGenerator extends AbstractTreeGenerator {
         int top = height - 2;   // top block for placing segments (without the two top-most foliage blocks)
         int rad = 0;            // the radius will increase every 3 levels by one
         for (int layer = 0; layer < top; layer++) {
-            if (layer % 3 == 0) {
-                rad += 1;
-            }
+            rad = (int) Math.floor(layer / 3f) + 1;
             // place the foliage
             if (rand.nextFloat() > 0.2f) {
                 circle(posX, posY + top - layer, posZ, rad, view, leaf);
