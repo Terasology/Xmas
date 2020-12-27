@@ -1,0 +1,25 @@
+{
+  "StartingInventory": {
+    "items": [
+      {
+        "uri": "CoreAdvancedAssets:Chest",
+        "items": [
+          { "uri": "CoreAssets:pickaxeImproved" },
+          { "uri": "CoreAssets:axeImproved" },
+          { "uri": "CoreAssets:shovelImproved" },
+          { "uri": "CoreAssets:Brick:engine:stair", "quantity": 42 },
+          { "uri": "CoreAssets:Cobblestone", "quantity": 42 },
+          { "uri": "CoreAssets:Plank", "quantity": 42 },
+          { "uri": "CoreAssets:Glass", "quantity": 24 },
+          { "uri": "Fences:Fence", "quantity": 24 },
+          { "uri": "CoreAssets:Ice", "quantity": 24 },
+          { "uri": "CoreAssets:Iris", "quantity": 7 },
+          { "uri": "CoreAssets:Dandelion", "quantity": 7 },
+          { "uri": "CoreAssets:Tulip", "quantity": 7 },
+          { "uri": "CoreAdvancedAssets:Door", "quantity": 3 },
+          { "uri": "CoreAdvancedAssets:Trunk", "quantity": 1 }
+        ]
+      }
+    ]
+  }
+}
