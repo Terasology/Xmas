@@ -5,11 +5,7 @@
   "displayName": "Xmas",
   "description": "Merry, Gooey Christmas! A wintry, holiday-themed module for the festive season.",
   "dependencies": [
-    {
-      "id": "CoreAdvancedAssets",
-      "minVersion": "1.2.0",
-      "optional": true
-    }
+    { "id": "CoreAdvancedAssets", "minVersion": "1.2.0", "optional": true }
   ],
   "serverSideOnly": false
 }
