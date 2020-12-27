@@ -1,9 +1,13 @@
 {
-    "id" : "Xmas",
-    "version" : "0.1.0-SNAPSHOT",
-    "author" : "The Terasology Foundation",
-    "displayName" : "Xmas",
-    "description" : "Merry, Gooey Christmas! A wintry, holiday-themed module for the festive season.",
-    "dependencies" : [],
-    "serverSideOnly" : false
+  "id": "Xmas",
+  "version": "0.1.0-SNAPSHOT",
+  "author": "The Terasology Foundation",
+  "displayName": "Xmas",
+  "description": "Merry, Gooey Christmas! A wintry, holiday-themed module for the festive season.",
+  "dependencies": [
+    { "id": "BiomesAPI", "minVersion": "4.0.0" },
+    { "id": "CoreAssets", "minVersion": "2.0.0" },
+    { "id": "CoreWorlds", "minVersion": "1.0.0" }
+  ],
+  "serverSideOnly": false
 }
