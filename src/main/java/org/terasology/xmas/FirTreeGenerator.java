@@ -16,50 +16,86 @@ public class FirTreeGenerator extends AbstractTreeGenerator {
     public String trunkType;
     public String leafType;
 
-    public FirTreeGenerator()
-    {
-        this(5, 7);
+    public FirTreeGenerator() {
+        this(6, 15);
     }
 
-    public FirTreeGenerator(int minHeight, int maxHeight)
-    {
-        if (minHeight > maxHeight) minHeight = maxHeight;
-        smallestHeight = minHeight;
+    public FirTreeGenerator(int minHeight, int maxHeight) {
+        smallestHeight = Math.min(minHeight, maxHeight);
         tallestHeight = maxHeight;
     }
 
-    public FirTreeGenerator setTrunkType(String trunk)
-    {
+    public FirTreeGenerator setTrunkType(String trunk) {
         trunkType = trunk;
         return this;
     }
 
-    public FirTreeGenerator setLeafType(String leaf)
-    {
+    public FirTreeGenerator setLeafType(String leaf) {
         leafType = leaf;
         return this;
     }
 
+    /**
+     * Generate a simple fir tree from <i>segments</i>.
+     *
+     * <pre>
+     *  □ □ □ ■ □ □ □
+     *  □ □ □ ■ □ □ □    ----
+     *  □ □ ■ ⛝ ■ □ □
+     *  □ □ ■ ⛝ ■ □ □
+     *  □ □ ■ ⛝ ■ □ □   ----
+     *  □ ■ ■ ⛝ ■ ■ □
+     *  □ ■ ■ ⛝ ■ ■ □
+     *  □ ■ ■ ⛝ ■ ■ □   ----
+     *  ■ ■ ■ ⛝ ■ ■ ■
+     *  ■ ■ ■ ⛝ ■ ■ ■
+     *  ■ ■ ■ ⛝ ■ ■ ■   ----
+     *        ...
+     *  □ □ □ ⛝ □ □ □
+     * </pre>
+     *
+     * @param blockManager the block manager to resolve the block uris
+     * @param view Chunk view
+     * @param rand The random number generator
+     * @param posX Relative position on the x-axis (wrt. the chunk)
+     * @param posY Relative position on the y-axis (wrt. the chunk)
+     * @param posZ Relative position on the z-axis (wrt. the chunk)
+     */
     @Override
     public void generate(BlockManager blockManager, CoreChunk view, Random rand, int posX, int posY, int posZ) {
         int height = rand.nextInt(smallestHeight, tallestHeight + 1);
+
         Block trunk = blockManager.getBlock(trunkType);
         Block leaf = blockManager.getBlock(leafType);
-        for (int q = 0; q <= height; q++)
-        {
-            safelySetBlock(view, posX, posY + q, posZ, trunk);
-            int rad = (int) Math.floor(height - q / 4f);
-            if (rand.nextBoolean() || rand.nextBoolean()) {
-                for (int z = 0; z < rad; z++) {
-                    for (int x = 0; x * x + z * z <= (rad + 0.5) * (rad + 0.5); x++) {
-                        safelySetBlock(view, posX + x, posY + q, posZ + z, leaf);
-                        safelySetBlock(view, posX - x, posY + q, posZ + z, leaf);
-                        safelySetBlock(view, posX - x, posY + q, posZ - z, leaf);
-                        safelySetBlock(view, posX + x, posY + q, posZ - z, leaf);
-                    }
-                }
+
+        safelySetBlock(view, posX, posY, posZ, trunk);
+        // ----
+        int top = height - 2;   // top block for placing segments (without the two top-most foliage blocks)
+        int rad = 0;            // the radius will increase every 3 levels by one
+        for (int layer = 0; layer < top; layer++) {
+            if (layer % 3 == 0) {
+                rad += 1;
+            }
+            // place the foliage
+            if (rand.nextFloat() > 0.2f) {
+                circle(posX, posY + top - layer, posZ, rad, view, leaf);
+            }
+            // set the trunk
+            safelySetBlock(view, posX, posY + top - layer, posZ, trunk);
+        }
+        // ----
+        safelySetBlock(view, posX, posY + height - 1, posZ, leaf);
+        safelySetBlock(view, posX, posY + height, posZ, leaf);
+    }
+
+    private void circle(int posX, int posY, int posZ, int rad, CoreChunk view, Block block) {
+        for (int z = 0; z <= rad; z++) {
+            for (int x = 0; x * x + z * z <= (rad + 0.5) * (rad + 0.5); x++) {
+                safelySetBlock(view, posX + x, posY, posZ + z, block);
+                safelySetBlock(view, posX - x, posY, posZ + z, block);
+                safelySetBlock(view, posX - x, posY, posZ - z, block);
+                safelySetBlock(view, posX + x, posY, posZ - z, block);
             }
         }
-        safelySetBlock(view, posX, posY + height + 1, posZ, leaf);
     }
 }

@@ -45,12 +45,9 @@ public class FirTreeProvider extends DefaultTreeProvider implements FacetProvide
 
         List<Predicate<Vector3i>> filters = getFilters(region);
 
-        // these values are derived from the maximum tree extents as
-        // computed by the TreeTests class. Birch is the highest with 32
-        // and Pine has 13 radius.
-        // These values must be identical in the class annotations.
-        int maxRad = 13;
-        int maxHeight = 32;
+        // these values are derived from the implementation of FirTreeGenerator.
+        int maxHeight = 15;
+        int maxRad = maxHeight / 3;
         Border3D borderForTreeFacet = region.getBorderForFacet(TreeFacet.class);
         TreeFacet facet = new TreeFacet(region.getRegion(), borderForTreeFacet.extendBy(1, maxHeight, maxRad));
 
