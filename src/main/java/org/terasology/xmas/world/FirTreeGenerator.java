@@ -4,10 +4,10 @@
 package org.terasology.xmas.world;
 
 import org.terasology.core.world.generator.trees.AbstractTreeGenerator;
-import org.terasology.utilities.random.Random;
-import org.terasology.world.block.Block;
-import org.terasology.world.block.BlockManager;
-import org.terasology.world.chunks.CoreChunk;
+import org.terasology.engine.utilities.random.Random;
+import org.terasology.engine.world.block.Block;
+import org.terasology.engine.world.block.BlockManager;
+import org.terasology.engine.world.chunks.CoreChunk;
 
 public class FirTreeGenerator extends AbstractTreeGenerator {
 
