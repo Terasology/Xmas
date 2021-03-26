@@ -7,7 +7,7 @@ import org.terasology.core.world.generator.trees.AbstractTreeGenerator;
 import org.terasology.engine.utilities.random.Random;
 import org.terasology.engine.world.block.Block;
 import org.terasology.engine.world.block.BlockManager;
-import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.chunks.Chunk;
 
 public class FirTreeGenerator extends AbstractTreeGenerator {
 
@@ -62,7 +62,7 @@ public class FirTreeGenerator extends AbstractTreeGenerator {
      * @param posZ Relative position on the z-axis (wrt. the chunk)
      */
     @Override
-    public void generate(BlockManager blockManager, CoreChunk view, Random rand, int posX, int posY, int posZ) {
+    public void generate(BlockManager blockManager, Chunk view, Random rand, int posX, int posY, int posZ) {
         int height = rand.nextInt(smallestHeight, tallestHeight + 1);
 
         Block trunk = blockManager.getBlock(trunkType);
@@ -86,7 +86,7 @@ public class FirTreeGenerator extends AbstractTreeGenerator {
         safelySetBlock(view, posX, posY + height, posZ, leaf);
     }
 
-    private void circle(int posX, int posY, int posZ, int rad, CoreChunk view, Block block) {
+    private void circle(int posX, int posY, int posZ, int rad, Chunk view, Block block) {
         for (int z = 0; z <= rad; z++) {
             for (int x = 0; x * x + z * z <= (rad + 0.5) * (rad + 0.5); x++) {
                 safelySetBlock(view, posX + x, posY, posZ + z, block);
