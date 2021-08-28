@@ -15,6 +15,7 @@ import org.terasology.engine.entitySystem.systems.RegisterSystem;
 import org.terasology.engine.logic.common.DisplayNameComponent;
 import org.terasology.module.inventory.systems.InventoryManager;
 import org.terasology.module.inventory.components.StartingInventoryComponent;
+import org.terasology.module.inventory.components.InventoryItem;
 import org.terasology.engine.logic.players.event.OnPlayerSpawnedEvent;
 import org.terasology.engine.registry.In;
 import org.terasology.engine.utilities.random.FastRandom;
@@ -76,17 +77,17 @@ public class SurpriseStartingInventory extends BaseComponentSystem {
         });
     }
 
-    private StartingInventoryComponent.InventoryItem chest(StartingInventoryComponent.InventoryItem... content) {
-        final StartingInventoryComponent.InventoryItem chest = new StartingInventoryComponent.InventoryItem();
+    private InventoryItem chest(InventoryItem... content) {
+        final InventoryItem chest = new InventoryItem();
         chest.uri = "CoreAdvancedAssets:Chest";
         chest.items.addAll(Arrays.asList(content));
         return chest;
     }
 
-    private StartingInventoryComponent.InventoryItem randomItem() {
+    private InventoryItem randomItem() {
         String uri = presents.get(RNG.nextInt(presents.size()));
 
-        final StartingInventoryComponent.InventoryItem inventoryItem = new StartingInventoryComponent.InventoryItem();
+        final InventoryItem inventoryItem = new InventoryItem();
         inventoryItem.uri = uri;
         return inventoryItem;
     }
