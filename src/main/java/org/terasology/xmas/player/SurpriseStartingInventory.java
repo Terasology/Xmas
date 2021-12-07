@@ -7,18 +7,19 @@ import com.google.common.collect.Lists;
 import org.terasology.engine.entitySystem.entity.EntityManager;
 import org.terasology.engine.entitySystem.entity.EntityRef;
 import org.terasology.engine.entitySystem.event.EventPriority;
-import org.terasology.engine.entitySystem.event.ReceiveEvent;
+import org.terasology.engine.entitySystem.event.Priority;
 import org.terasology.engine.entitySystem.prefab.PrefabManager;
 import org.terasology.engine.entitySystem.systems.BaseComponentSystem;
 import org.terasology.engine.entitySystem.systems.RegisterMode;
 import org.terasology.engine.entitySystem.systems.RegisterSystem;
 import org.terasology.engine.logic.common.DisplayNameComponent;
-import org.terasology.module.inventory.systems.InventoryManager;
-import org.terasology.module.inventory.components.StartingInventoryComponent;
-import org.terasology.module.inventory.components.InventoryItem;
 import org.terasology.engine.logic.players.event.OnPlayerSpawnedEvent;
 import org.terasology.engine.registry.In;
 import org.terasology.engine.utilities.random.FastRandom;
+import org.terasology.gestalt.entitysystem.event.ReceiveEvent;
+import org.terasology.module.inventory.components.InventoryItem;
+import org.terasology.module.inventory.components.StartingInventoryComponent;
+import org.terasology.module.inventory.systems.InventoryManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,7 +69,8 @@ public class SurpriseStartingInventory extends BaseComponentSystem {
      * @param event notification that a player spawned
      * @param player the player that has been spawned
      */
-    @ReceiveEvent(priority = EventPriority.PRIORITY_HIGH)
+    @Priority(EventPriority.PRIORITY_HIGH)
+    @ReceiveEvent
     public void onPlayerSpawn(OnPlayerSpawnedEvent event, EntityRef player) {
         player.upsertComponent(StartingInventoryComponent.class, maybeComponent -> {
             StartingInventoryComponent startingInventory = maybeComponent.orElse(new StartingInventoryComponent());
